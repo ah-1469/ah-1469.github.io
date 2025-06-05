@@ -20,41 +20,51 @@
       background-color: #fff;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
       padding: 20px;
-      text-align: center;
       transition: top 0.3s ease;
       z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
     }
 
     header.minimized {
-      top: -60px;
+      top: -80px;
     }
 
     header.sticky {
       top: 0;
-      padding: 10px 20px;
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: rgba(255, 255, 255, 0.95);
+    }
+
+    .nav-buttons {
       display: flex;
       justify-content: center;
-      gap: 20px;
+      width: 50%;
+      gap: 10px;
     }
 
-    header.sticky button {
-      background: none;
-      border: none;
+    .nav-button {
+      flex: 1;
+      text-align: center;
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 25px;
       font-weight: bold;
-      font-size: 16px;
-      color: #333;
-      cursor: pointer;
-      padding: 5px 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      transition: background 0.3s ease, transform 0.2s ease;
     }
 
-    header.sticky button:hover {
-      background-color: #ddd;
-      border-radius: 5px;
+    .nav-button:hover {
+      background: linear-gradient(135deg, #2575fc 0%, #6a11cb 100%);
+      transform: translateY(-2px);
     }
 
     .container {
-      margin-top: 100px;
+      margin-top: 120px;
       padding: 20px;
     }
 
@@ -81,9 +91,11 @@
 </head>
 <body>
   <header id="header">
-    <button onclick="showPage('about')">About Me</button>
-    <button onclick="showPage('projects')">Projects</button>
-    <button onclick="showPage('contact')">Contact Info</button>
+    <div class="nav-buttons">
+      <a href="#" class="nav-button" onclick="showPage('about')">About Me</a>
+      <a href="#" class="nav-button" onclick="showPage('projects')">Projects</a>
+      <a href="#" class="nav-button" onclick="showPage('contact')">Contact Info</a>
+    </div>
   </header>
 
   <div class="container">
