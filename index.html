@@ -26,7 +26,7 @@
     }
 
     header.minimized {
-      top: -60px; /* hides header */
+      top: -60px;
     }
 
     header.sticky {
@@ -38,10 +38,19 @@
       gap: 20px;
     }
 
-    header.sticky a {
-      text-decoration: none;
-      color: #333;
+    header.sticky button {
+      background: none;
+      border: none;
       font-weight: bold;
+      font-size: 16px;
+      color: #333;
+      cursor: pointer;
+      padding: 5px 10px;
+    }
+
+    header.sticky button:hover {
+      background-color: #ddd;
+      border-radius: 5px;
     }
 
     .container {
@@ -60,29 +69,41 @@
       transform: translateZ(0);
       transition: transform 0.3s ease-out;
     }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
   </style>
 </head>
 <body>
   <header id="header">
-    <div>My Portfolio</div>
+    <button onclick="showPage('about')">About Me</button>
+    <button onclick="showPage('projects')">Projects</button>
+    <button onclick="showPage('contact')">Contact Info</button>
   </header>
 
   <div class="container">
-    <div class="textbox">
-      <h2>Welcome!</h2>
-      <p>This is my portfolio website. Scroll down to learn more!</p>
+    <div id="about" class="page active">
+      <div class="textbox">
+        <h2>About Me</h2>
+        <p>Welcome to my portfolio! I am a dedicated professional with a passion for web development, design, and innovation.</p>
+      </div>
     </div>
-    <div class="textbox">
-      <h2>About Me</h2>
-      <p>Here you can write a bit about yourself, your work, and your passion.</p>
+    <div id="projects" class="page">
+      <div class="textbox">
+        <h2>Projects</h2>
+        <p>Check out some of the projects I’ve worked on below. Each project showcases a unique set of skills and technologies.</p>
+      </div>
     </div>
-    <div class="textbox">
-      <h2>Projects</h2>
-      <p>Showcase your projects here with links and descriptions.</p>
-    </div>
-    <div class="textbox">
-      <h2>Contact</h2>
-      <p>Provide contact details or a form here.</p>
+    <div id="contact" class="page">
+      <div class="textbox">
+        <h2>Contact Info</h2>
+        <p>Feel free to reach out via email at example@example.com or connect with me on LinkedIn!</p>
+      </div>
     </div>
   </div>
 
@@ -107,6 +128,14 @@
         box.style.transform = `translateY(${offset}px)`;
       });
     });
+
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.getElementById(pageId).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   </script>
 </body>
 </html>
