@@ -1,1 +1,112 @@
-<h1> My Portfolio </h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+      overflow-x: hidden;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 20px;
+      text-align: center;
+      transition: top 0.3s ease;
+      z-index: 1000;
+    }
+
+    header.minimized {
+      top: -60px; /* hides header */
+    }
+
+    header.sticky {
+      top: 0;
+      padding: 10px 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    header.sticky a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .container {
+      margin-top: 100px;
+      padding: 20px;
+    }
+
+    .textbox {
+      background-color: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 40px auto;
+      max-width: 600px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      position: relative;
+      transform: translateZ(0);
+      transition: transform 0.3s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <div>My Portfolio</div>
+  </header>
+
+  <div class="container">
+    <div class="textbox">
+      <h2>Welcome!</h2>
+      <p>This is my portfolio website. Scroll down to learn more!</p>
+    </div>
+    <div class="textbox">
+      <h2>About Me</h2>
+      <p>Here you can write a bit about yourself, your work, and your passion.</p>
+    </div>
+    <div class="textbox">
+      <h2>Projects</h2>
+      <p>Showcase your projects here with links and descriptions.</p>
+    </div>
+    <div class="textbox">
+      <h2>Contact</h2>
+      <p>Provide contact details or a form here.</p>
+    </div>
+  </div>
+
+  <script>
+    const header = document.getElementById('header');
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50 && window.scrollY > lastScrollY) {
+        header.classList.add('minimized');
+        header.classList.remove('sticky');
+      } else {
+        header.classList.remove('minimized');
+        header.classList.add('sticky');
+      }
+      lastScrollY = window.scrollY;
+
+      // Parallax effect for textboxes
+      document.querySelectorAll('.textbox').forEach(box => {
+        const speed = 0.3;
+        const offset = window.scrollY * speed;
+        box.style.transform = `translateY(${offset}px)`;
+      });
+    });
+  </script>
+</body>
+</html>
